@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Arepas La Karola</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --rojo: #d32f2f;
+            --amarillo: #ffc107;
+            --azul: #1d4ed8;
+        }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #fdfaf3; 
+            scroll-behavior: smooth; 
+        }
+        
+        .font-brand { 
+            font-family: 'Bangers', cursive; 
+            letter-spacing: 1.5px; 
+        }
+        
+        .bg-pattern {
+            background-color: #fdfaf3;
+            background-image: linear-gradient(#f4f1ea 2px, transparent 2px), linear-gradient(90deg, #f4f1ea 2px, transparent 2px);
+            background-size: 40px 40px;
+        }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(211, 47, 47, 0.95), rgba(183, 28, 28, 0.98)),
+                        url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+            position: relative;
+        }
+
+        /* --- LOGO CIRCULAR PROFESIONAL --- */
+        .arepa-logo-wrapper {
+            background-color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            margin-bottom: 1rem;
+            border-radius: 50%;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1), 
+                        0 0 0 6px var(--amarillo), 
+                        0 0 0 12px white, 
+                        0 10px 25px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        .arepa-logo-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- DECORACIÓN MAÍZ --- */
+        .decoracion-maiz {
+            position: relative;
+        }
+        .decoracion-maiz::before,
+        .decoracion-maiz::after {
+            content: '🌽';
+            position: absolute;
+            font-size: 2.5rem;
+            opacity: 0.85;
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+            pointer-events: none;
+            z-index: 0;
+        }
+        .decoracion-maiz::before {
+            top: 10px;
+            left: 5%;
+            transform: rotate(-20deg);
+        }
+        .decoracion-maiz::after {
+            bottom: 70px;
+            right: 5%;
+            transform: rotate(20deg);
+        }
+
+        /* --- TARJETAS --- */
+        .card-shred {
+            clip-path: polygon(100% 0%, 100% 96%, 96% 100%, 4% 100%, 0% 96%, 0% 0%);
+            transition: all 0.2s ease;
+        }
+        .card-shred:hover { 
+            transform: translateY(-4px); 
+        }
+
+        /* --- BOTONES DEL MENÚ --- */
+        .category-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .category-btn.active {
+            background-color: var(--amarillo);
+            color: var(--rojo);
+            font-weight: 900;
+            border-color: var(--rojo);
+            transform: scale(1.05) rotate(-2deg);
+            box-shadow: 3px 3px 0px var(--rojo);
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* --- ANIMACIÓN CARRITO --- */
+        @keyframes pop {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .anim-pop { animation: pop 0.3s ease-in-out; }
+        
+        @media (min-width: 768px) {
+            .decoracion-maiz::before { left: 15%; font-size: 3.5rem; }
+            .decoracion-maiz::after { right: 15%; font-size: 3.5rem; bottom: 40px; }
+        }
+    </style>
+</head>
+<body class="bg-pattern pb-32">
+
+    <header class="hero-gradient text-white pt-10 pb-20 px-4 md:px-8 text-center shadow-2xl border-b-8 border-yellow-400">
+        <div class="max-w-3xl mx-auto decoracion-maiz">
+            <div class="arepa-logo-wrapper relative z-10">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWOAJ0SRvvZmTInxRD_YJQee31ZFacXGpzeQ&s" 
+                     alt="Logo Arepas La Karola" 
+                     class="w-32 h-32 md:w-44 md:h-44 object-cover rounded-full bg-white">
+            </div>
+            
+            <h1 class="font-brand text-5xl md:text-7xl mb-2 drop-shadow-[3px_3px_0px_rgba(0,0,0,0.6)] uppercase relative z-10">
+                Arepas La Karola
+            </h1>
+            <div class="inline-block bg-blue-700 text-white font-black px-5 py-1.5 rounded-md transform rotate-1 text-xs md:text-sm shadow-lg mb-3 tracking-wide relative z-10">
+                EL VERDADERO SABOR DEL MAÍZ
+            </div>
+            <p class="font-medium text-red-50 italic opacity-90 text-sm md:text-base mt-2 relative z-10">"Del campo a su mesa con amor y tradición"</p>
+        </div>
+    </header>
+
+    <div class="sticky top-4 z-40 max-w-4xl mx-auto px-4 -mt-8 mb-10">
+        <div class="bg-white rounded-2xl shadow-[0_10px_30px_rgba(211,47,47,0.18)] border border-gray-100 p-2 md:p-2">
+            <div class="flex flex-wrap justify-center gap-2 md:gap-3 py-2 px-1 items-center">
+                <button onclick="filtrar('Todas', this)" class="category-btn active px-4 py-2 md:px-6 md:py-2.5 bg-white border-2 border-gray-100 font-bold rounded-xl text-gray-500 uppercase text-[11px] md:text-sm hover:border-red-200 transition-colors">Todas</button>
+                <button onclick="filtrar('Arepas', this)" class="category-btn px-4 py-2 md:px-6 md:py-2.5 bg-white border-2 border-gray-100 font-bold rounded-xl text-gray-500 uppercase text-[11px] md:text-sm hover:border-red-200 transition-colors">Arepas</button>
+                <button onclick="filtrar('Snacks', this)" class="category-btn px-4 py-2 md:px-6 md:py-2.5 bg-white border-2 border-gray-100 font-bold rounded-xl text-gray-500 uppercase text-[11px] md:text-sm hover:border-red-200 transition-colors">Snacks</button>
+                <button onclick="filtrar('Cárnicos', this)" class="category-btn px-4 py-2 md:px-6 md:py-2.5 bg-white border-2 border-gray-100 font-bold rounded-xl text-gray-500 uppercase text-[11px] md:text-sm hover:border-red-200 transition-colors">Cárnicos</button>
+                <button onclick="filtrar('Panadería', this)" class="category-btn px-4 py-2 md:px-6 md:py-2.5 bg-white border-2 border-gray-100 font-bold rounded-xl text-gray-500 uppercase text-[11px] md:text-sm hover:border-red-200 transition-colors">Panadería</button>
+                <button onclick="filtrar('Otros', this)" class="category-btn px-4 py-2 md:px-6 md:py-2.5 bg-white border-2 border-gray-100 font-bold rounded-xl text-gray-500 uppercase text-[11px] md:text-sm hover:border-red-200 transition-colors">Otros</button>
+            </div>
+        </div>
+    </div>
+
+    <main id="catalogo" class="max-w-7xl mx-auto px-4 mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        </main>
+
+    <section class="max-w-4xl mx-auto px-4 mt-16 mb-8">
+        <div class="bg-slate-800 text-yellow-400 p-6 md:p-8 rounded-3xl shadow-2xl border-4 border-slate-700 transform md:rotate-1">
+            <h3 class="font-brand text-2xl md:text-3xl mb-4 text-center border-b border-yellow-400/30 pb-3 tracking-widest">📦 INFO DE PEDIDOS</h3>
+            <ul class="text-sm md:text-base space-y-3 md:space-y-4 font-bold max-w-2xl mx-auto">
+                <li class="flex justify-between items-center bg-slate-700/50 p-3 rounded-lg">
+                    <span>📍 Domicilio G.A.M:</span> <span class="text-white">₡1,500</span>
+                </li>
+                <li class="flex justify-between items-center bg-slate-700/50 p-3 rounded-lg">
+                    <span>🚚 Resto del país:</span> <span class="text-white text-right">Envíos a todas costa rica</span>
+                </li>
+                <li class="flex justify-between items-center bg-slate-700/50 p-3 rounded-lg text-red-400">
+                  <span>⏰ Horario:</span> <span class="font-black uppercase">Lunes a Viernes</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div id="cart-modal" class="fixed inset-0 bg-black/70 z-50 hidden flex-col justify-end sm:justify-center items-center backdrop-blur-sm">
+        <div class="bg-white w-full sm:w-[480px] max-h-[85vh] sm:max-h-[90vh] rounded-t-3xl sm:rounded-3xl shadow-2xl flex flex-col overflow-hidden animate-[slideUp_0.3s_ease-out]">
+            <div class="bg-red-700 text-white p-5 sm:p-6 flex justify-between items-center">
+                <h2 class="font-brand text-2xl md:text-3xl tracking-wide">Tu Pedido</h2>
+                <button onclick="toggleCart()" class="text-red-200 hover:text-white font-black text-3xl px-2 leading-none transition-colors">&times;</button>
+            </div>
+            <div id="cart-items" class="p-4 sm:p-6 overflow-y-auto flex-1 bg-gray-50 space-y-3">
+                </div>
+            <div class="p-6 border-t border-gray-200 bg-white shadow-[0_-10px_20px_rgba(0,0,0,0.05)]">
+                <div class="flex justify-between items-center mb-5">
+                    <span class="font-bold text-gray-500 uppercase tracking-wide text-sm">Total a pagar:</span>
+                    <span id="cart-total" class="font-black text-3xl text-red-700">₡0</span>
+                </div>
+                <button onclick="enviarPedidoWhatsApp()" class="w-full bg-[#25D366] text-white font-black uppercase tracking-wider py-4 md:py-5 rounded-2xl shadow-lg hover:bg-green-600 active:scale-95 transition-all flex items-center justify-center gap-3 text-lg">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+                    Confirmar por WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-6 left-0 right-0 px-4 z-40 pointer-events-none">
+        <button id="cart-float-btn" onclick="toggleCart()" class="max-w-lg mx-auto flex items-center justify-between bg-red-700 text-white p-4 md:p-5 rounded-2xl md:rounded-full shadow-[0_10px_25px_rgba(211,47,47,0.5)] hover:bg-red-800 transition-all active:scale-95 border-2 border-yellow-400 pointer-events-auto hidden">
+            <div class="flex items-center gap-4">
+                <div class="bg-yellow-400 text-red-900 w-10 h-10 rounded-full flex items-center justify-center font-black text-lg shadow-inner" id="cart-count">0</div>
+                <span class="font-black uppercase tracking-wide text-sm md:text-base">Ver mi pedido</span>
+            </div>
+            <span class="font-black text-xl md:text-2xl" id="cart-float-total">₡0</span>
+        </button>
+    </div>
+
+    <script>
+        const WHATSAPP_NUM = "50660891318";
+
+        const productos = [
+            { id: 1, n: "Arepas Blancas o Amarillas", p: 1300, c: "5 unds", cat: "Arepas", d: "Maíz cascado natural" },
+            { id: 2, n: "Arepas Rellenas Mozzarella", p: 3500, c: "4 unds", cat: "Arepas", d: "Mozzarella y queso semi duro" },
+            { id: 3, n: "Arepas de Chocolo", p: 4500, c: "5 unds", cat: "Arepas", d: "Sabor dulce de la casa" },
+            { id: 4, n: "Arepas Rellenas Mini Mozzarella", p: 3800, c: "5 unds", cat: "Arepas", d: "Ideales para boquitas" },
+            { id: 5, n: "Arepas de Yuca con Queso", p: 2800, c: "5 unds", cat: "Arepas", d: "Masa suave de yuca" },
+            { id: 6, n: "Arepitas para Asados", p: 1300, c: "10 unds", cat: "Arepas", d: "Redondas, listas para el asador" },
+            { id: 7, n: "Arepas para Rellenar", p: 1500, c: "5 unds", cat: "Arepas", d: "Rellénelas a su gusto en casa" },
+            { id: 8, n: "Arepas Aliñadas con Queso", p: 2500, c: "5 unds", cat: "Arepas", d: "Maíz amarillo aliñado" },
+            { id: 9, n: "Arepas Ultra Delgadas", p: 1300, c: "5 unds", cat: "Arepas", d: "Blancas o amarillas, muy crujientes" },
+            { id: 10, n: "Empanadas Grandes", p: 7000, c: "10 unds", cat: "Snacks", d: "Carne, Pollo, Queso, Hawaiana, Frijol, Papa" },
+            { id: 11, n: "Empanadas Pequeñas", p: 7000, c: "12 unds", cat: "Snacks", d: "Carne o Pollo" },
+            { id: 12, n: "Palitos de Queso Hojaldre", p: 4500, c: "10 unds", cat: "Snacks", d: "Listos para hornear o freír" },
+            { id: 13, n: "Bandeja de Buñuelos", p: 4500, c: "10 unds", cat: "Snacks", d: "Elaboración tradicional" },
+            { id: 14, n: "Tamales Santarrosanos", p: 5800, c: "Und", cat: "Snacks", d: "Por encargo (Cada 15 días)" },
+            { id: 15, n: "Chorizos Paisas", p: 7000, c: "10 unds", cat: "Cárnicos", d: "El original sabor colombiano" },
+            { id: 16, n: "Morcilla", p: 7800, c: "Kilo", cat: "Cárnicos", d: "Fresca y bien aliñada" },
+            { id: 17, n: "Bofe", p: 6000, c: "Kilo", cat: "Cárnicos", d: "Calidad garantizada" },
+            { id: 18, n: "Chunchullo", p: 6000, c: "Kilo", cat: "Cárnicos", d: "Para asar y disfrutar" },
+            { id: 19, n: "Chicharrón Colombiano", p: 7000, c: "Kilo", cat: "Cárnicos", d: "Ya va cortadito y listo" },
+            { id: 20, n: "Lechona (Porción)", p: 5700, c: "Porción", cat: "Cárnicos", d: "Por encargo (Avisar antes del evento)" },
+            { id: 21, n: "Almojábanas", p: 3000, c: "6 unds", cat: "Panadería", d: "Libres de gluten" },
+            { id: 22, n: "Pan de bonos", p: 4500, c: "10 unds", cat: "Panadería", d: "Para freidora de aire (180g / 12min)" },
+            { id: 23, n: "Tostadas Colombianas", p: 2200, c: "Pqt", cat: "Panadería", d: "Crujientes" },
+            { id: 24, n: "Pandequeso Congelado", p: 4500, c: "10 unds", cat: "Panadería", d: "Listo para el horno" },
+            { id: 25, n: "Quesito de la Casa", p: 6800, c: "Libra", cat: "Otros", d: "Fresco, ideal para arepas" },
+            { id: 26, n: "Masa Prep. para Buñuelos", p: 6000, c: "Kilo", cat: "Otros", d: "Lista para moldear y freír" },
+            { id: 27, n: "Ají para Empanadas", p: 3000, c: "450gr", cat: "Otros", d: "El acompañante perfecto" }
+        ];
+
+        let carrito = [];
+
+        function agregarAlCarrito(id, n, p) {
+            const itemExistente = carrito.find(item => item.id === id);
+            if (itemExistente) {
+                itemExistente.cantidad += 1;
+            } else {
+                carrito.push({ id, n, p, cantidad: 1 });
+            }
+            actualizarUI();
+            
+            const btn = document.getElementById('cart-float-btn');
+            btn.classList.remove('anim-pop');
+            void btn.offsetWidth; 
+            btn.classList.add('anim-pop');
+        }
+
+        function quitarDelCarrito(id) {
+            const index = carrito.findIndex(item => item.id === id);
+            if (index !== -1) {
+                if (carrito[index].cantidad > 1) {
+                    carrito[index].cantidad -= 1;
+                } else {
+                    carrito.splice(index, 1);
+                }
+            }
+            actualizarUI();
+        }
+
+        function actualizarUI() {
+            const total = carrito.reduce((sum, item) => sum + (item.p * item.cantidad), 0);
+            const totalItems = carrito.reduce((sum, item) => sum + item.cantidad, 0);
+
+            const floatBtn = document.getElementById('cart-float-btn');
+            document.getElementById('cart-count').innerText = totalItems;
+            document.getElementById('cart-float-total').innerText = `₡${total.toLocaleString()}`;
+            
+            if (totalItems > 0) {
+                floatBtn.classList.remove('hidden');
+            } else {
+                floatBtn.classList.add('hidden');
+                document.getElementById('cart-modal').classList.replace('flex', 'hidden');
+            }
+
+            const cartContainer = document.getElementById('cart-items');
+            document.getElementById('cart-total').innerText = `₡${total.toLocaleString()}`;
+            
+            cartContainer.innerHTML = carrito.map(item => `
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100 flex justify-between items-center transition-all hover:shadow-md">
+                    <div class="flex-1 pr-3">
+                        <h4 class="font-bold text-gray-800 text-sm md:text-base uppercase leading-tight mb-1">${item.n}</h4>
+                        <p class="text-red-600 font-black text-base">₡${(item.p * item.cantidad).toLocaleString()}</p>
+                    </div>
+                    <div class="flex items-center gap-3 bg-gray-50 rounded-xl p-1.5 border border-gray-200">
+                        <button onclick="quitarDelCarrito(${item.id})" class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center text-red-600 font-black text-xl bg-white rounded-lg shadow-sm hover:bg-red-50 active:scale-95 transition-all">-</button>
+                        <span class="font-bold w-5 text-center text-gray-700 md:text-lg">${item.cantidad}</span>
+                        <button onclick="agregarAlCarrito(${item.id}, '${item.n}', ${item.p})" class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center text-green-600 font-black text-xl bg-white rounded-lg shadow-sm hover:bg-green-50 active:scale-95 transition-all">+</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            if (modal.classList.contains('hidden')) {
+                modal.classList.replace('hidden', 'flex');
+            } else {
+                modal.classList.replace('flex', 'hidden');
+            }
+        }
+
+        function enviarPedidoWhatsApp() {
+            if (carrito.length === 0) return;
+            
+            let textoPedido = "¡Hola *Arepas La Karola*! 👋 Me gustaría hacer el siguiente pedido:\n\n";
+            carrito.forEach(item => {
+                textoPedido += `▪️ ${item.cantidad}x ${item.n} - ₡${(item.p * item.cantidad).toLocaleString()}\n`;
+            });
+            
+            const total = carrito.reduce((sum, item) => sum + (item.p * item.cantidad), 0);
+            textoPedido += `\n*Total a pagar: ₡${total.toLocaleString()}*`;
+            textoPedido += "\n\nQuedo atento(a) para coordinar el pago y envío. ¡Gracias!";
+            
+            const url = `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(textoPedido)}`;
+            window.open(url, '_blank');
+            toggleCart();
+        }
+
+        function renderCatalogo(items) {
+            const container = document.getElementById('catalogo');
+            container.innerHTML = items.map(item => `
+                <div class="card-shred bg-white border-2 border-gray-100 shadow-lg flex flex-col h-full rounded-b-lg">
+                    <div class="bg-red-700 h-1.5 w-full"></div>
+                    <div class="p-5 md:p-6 flex flex-col flex-grow">
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-blue-700 font-black text-[10px] md:text-xs uppercase tracking-wider bg-blue-50 px-2 py-1 rounded">${item.cat}</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-[10px] md:text-xs font-black px-2 py-1 rounded italic shadow-sm">${item.c}</span>
+                        </div>
+                        <h3 class="font-bold text-gray-900 text-base md:text-lg leading-tight mb-2 uppercase">${item.n}</h3>
+                        <p class="text-gray-500 text-xs md:text-sm italic mb-5 leading-relaxed line-clamp-2">"${item.d}"</p>
+                        
+                        <div class="mt-auto border-t border-dashed border-gray-200 pt-4 flex justify-between items-end">
+                            <div>
+                                <p class="text-[9px] md:text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Precio</p>
+                                <p class="text-2xl md:text-3xl font-black text-red-700 tracking-tighter">₡${item.p.toLocaleString()}</p>
+                            </div>
+                            <button onclick="agregarAlCarrito(${item.id}, '${item.n}', ${item.p})" class="h-12 w-12 md:h-14 md:w-14 rounded-2xl bg-yellow-400 text-red-800 flex items-center justify-center shadow-md hover:bg-yellow-500 hover:shadow-lg active:scale-90 transition-all">
+                                <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filtrar(cat, btn) {
+            const filtrados = cat === 'Todas' ? productos : productos.filter(p => p.cat === cat);
+            renderCatalogo(filtrados);
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        renderCatalogo(productos);
+    </script>
+</body>
+</html>
