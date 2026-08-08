@@ -546,14 +546,29 @@
             arepasTradicionalesBlanca: "assets/arepas-tradicionales-blanca.jpg",
             arepasAcompanamiento: "assets/arepa de acompañamiento.jpeg",
             arepadeyuca: "assets/arepa de yuca.jpeg",
+
             empanadasGrandes: "assets/empanadas grandes.png",
             empanadasPequenas: "assets/empanadasPequeñas.png",
             palitodequeso: "assets/palitosdequeso.png",
             buñuelos: "assets/buñuelos.png",
             tamales: "assets/tamal.png",
+
+            chorizoPaisa: "assets/chorizo paisa.png",
+            morcilla: "assets/morcilla.png",
+            bofe: "assets/bofe.png",
+
+            chicharron: "assets/chicharron.png",
+            lechona: "assets/lechona.png",
+
+            almojabanas: "assets/almojabana.png",
+            pandebonos: "assets/pan de bonos.png",
+            tostadas: "assets/tostadas.png",
+            panDeQueso: "assets/pan de queso.png",
+            masadebueñuelos: "assets/masadebuñuelos.png",
+
+            aji: "assets/aji.png",
         };
 
-        // BASE DE DATOS COMPLETA (31 PRODUCTOS MANTENIDOS AL 100%)
         const productos = [
             { id: 1, n: "Arepas Blancas o Amarillas", p: 1300, c: "5 unds", cat: "Arepas", d: "Maíz cascado natural perfecto para dorar", opc: ["Blancas", "Amarillas"], img: imgMap.arepasTradicionales, popular: true },
             { id: 2, n: "Arepas Rellenas Mozzarella", p: 3500, c: "4 unds", cat: "Arepas", d: "Mozzarella y queso semi duro derretido", img: imgMap.arepasQuesoMozzarella, popular: true },
@@ -567,22 +582,21 @@
             { id: 12, n: "Palitos de Queso Hojaldre", p: 4500, c: "10 unds", cat: "Snacks", d: "Listos para hornear o freír en minutos", img: imgMap.palitodequeso },
             { id: 13, n: "Bandeja de Buñuelos", p: 4500, c: "10 unds", cat: "Snacks", d: "Buñuelos esponjosos y crujientes de queso", img: imgMap.buñuelos },
             { id: 14, n: "Tamales Santarrosanos", p: 5800, c: "Und", cat: "Snacks", d: "Bajo encargo previo (Cada 15 días)", img: imgMap.tamales },
-            { id: 15, n: "Chorizos Paisas", p: 7000, c: "10 unds", cat: "Cárnicos", d: "El auténtico sabor artesanal colombiano", img: imgMap.carnes, popular: true },
-            { id: 16, n: "Morcilla", p: 7800, c: "Kilo", cat: "Cárnicos", d: "Fresca y perfectamente sazonada con especias", img: imgMap.carnes },
-            { id: 17, n: "Bofe", p: 6000, c: "Kilo", cat: "Cárnicos", d: "Calidad de carne seleccionada", img: imgMap.carnes },
+            { id: 15, n: "Chorizos Paisas", p: 7000, c: "10 unds", cat: "Cárnicos", d: "El auténtico sabor artesanal colombiano x10", img: imgMap.chorizoPaisa, popular: true },
+            { id: 16, n: "Morcilla", p: 7800, c: "Kilo", cat: "Cárnicos", d: "Fresca y perfectamente sazonada con especias", img: imgMap.morcilla },
+            { id: 17, n: "Bofe", p: 6000, c: "Kilo", cat: "Cárnicos", d: "Calidad de carne seleccionada", img: imgMap.bofe },
             { id: 18, n: "Chunchullo", p: 6000, c: "Kilo", cat: "Cárnicos", d: "Ideal para dorar al sartén o asador", img: imgMap.carnes },
-            { id: 19, n: "Chicharrón Colombiano", p: 7000, c: "Kilo", cat: "Cárnicos", d: "Pre-cortado y listo para dorar", img: imgMap.carnes, popular: true },
-            { id: 20, n: "Lechona (Porción)", p: 5700, c: "Porción", cat: "Cárnicos", d: "Porción individual bajo encargo", img: imgMap.carnes },
-            { id: 21, n: "Almojábanas", p: 3000, c: "6 unds", cat: "Panadería", d: "Receta sin gluten suave y muy esponjosa", img: imgMap.panaderia },
-            { id: 22, n: "Pan de Bonos", p: 4500, c: "10 unds", cat: "Panadería", d: "Ideal para hornear en Air Fryer u horno", img: imgMap.panaderia, popular: true },
-            { id: 23, n: "Tostadas Colombianas", p: 2200, c: "Pqt", cat: "Panadería", d: "Crujientes, ideales con queso fresco", img: imgMap.panaderia },
-            { id: 24, n: "Pandequeso Congelado", p: 4500, c: "10 unds", cat: "Panadería", d: "Directo de tu congelador al horno", img: imgMap.panaderia },
+            { id: 19, n: "Chicharrón Colombiano", p: 7000, c: "Kilo", cat: "Cárnicos", d: "Pre-cortado y listo para dorar", img: imgMap.chicharron, popular: true },
+            { id: 20, n: "Lechona (Porción)", p: 5700, c: "Porción", cat: "Cárnicos", d: "Porción individual bajo encargo", img: imgMap.lechona },
+            { id: 21, n: "Almojábanas", p: 3000, c: "6 unds", cat: "Panadería", d: "Receta sin gluten suave y muy esponjosa", img: imgMap.almojabanas },
+            { id: 22, n: "Pan de Bonos", p: 4500, c: "10 unds", cat: "Panadería", d: "Ideal para hornear en Air Fryer u horno", img: imgMap.pandebonos, popular: true },
+            { id: 23, n: "Tostadas Colombianas", p: 2200, c: "Pqt", cat: "Panadería", d: "Crujientes, ideales con queso fresco", img: imgMap.tostadas },
+            { id: 24, n: "Pan de queso Congelado", p: 4500, c: "10 unds", cat: "Panadería", d: "Directo de tu congelador al horno", img: imgMap.panDeQueso },
             { id: 25, n: "Quesito de la Casa", p: 6800, c: "Libra", cat: "Otros", d: "Fresco, acompañante perfecto de arepas", img: imgMap.queso },
-            { id: 26, n: "Masa Prep. para Buñuelos", p: 6000, c: "Kilo", cat: "Otros", d: "Lista para armar y freír en casa", img: imgMap.queso },
-            { id: 27, n: "Ají Casero para Empanadas", p: 3000, c: "450gr", cat: "Otros", d: "Toque picante suave y tradicional", img: imgMap.queso }
+            { id: 26, n: "Masa Prep. para Buñuelos", p: 6000, c: "Kilo", cat: "Otros", d: "Lista para armar y freír en casa", img: imgMap.masadebueñuelos },
+            { id: 27, n: "Ají Casero para Empanadas", p: 3000, c: "450gr", cat: "Otros", d: "Toque picante suave y tradicional", img: imgMap.aji }
         ];
 
-        // INICIALIZACIÓN
         document.addEventListener('DOMContentLoaded', () => {
             cargarCarritoLocalStorage();
             renderCatalogo(productos);
